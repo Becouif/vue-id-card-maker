@@ -106,48 +106,22 @@
             <div class="top"><img :src="imgType" alt="Profile Pic" /></div>
             <div class="bottom">
               <p>{{ inputName }}</p>
+              <p>{{ companyName }}</p>
               <p class="desi">{{ role }}</p>
-              <div class="barcode"><img src="" alt="####BarCode" /></div>
+              <p><b>Id no:</b></p>
+              <p>1275127237</p>
+
+              <div class="logo">
+                <img src="../images/barcode.PNG" alt="####BarCode" />
+              </div>
             </div>
           </div>
         </div>
         <!-- start of the back  -->
-        <div class="back">
-          <h1 class="Details">Information</h1>
-          <hr class="hr" />
-          <div class="details-info">
-            <p>
-              <b>{{ selectedOffice }}</b>
-            </p>
-            <p>{{ companyName }}</p>
-            <p><b>Role:</b></p>
-            <p>{{ role }}</p>
-            <p><b>Id no:</b></p>
-            <p>102123232</p>
-            <div class="logo"><img src="" alt="barcode.png" /></div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
   <br />
-  <section id="id-card">
-    <div class="max-w-sm w-full lg:max-w-full lg:flex">
-      <div
-        class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white p-4 flex flex-col justify-between leading-normal"
-      >
-        <div class="flex items-center">
-          <img class="mr-4" :src="imgType" alt="" width="100" height="100" />
-          <div class="text-sm">
-            <p class="text-gray-900 leading-none">Name: {{ inputName }}</p>
-            <p class="text-gray-600">{{ selectedOffice }} {{ companyName }}</p>
-            <p class="text-gray-600">Role: {{ role }}</p>
-            <p class="text-gray-600">Id no:</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </template>
 <script>
 export default {
@@ -183,22 +157,6 @@ export default {
 
 <style scoped>
 /* style for card display  */
-* {
-  margin: 00px;
-  padding: 00px;
-  box-sizing: content-box;
-}
-
-.container {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #e6ebe0;
-  flex-direction: row;
-  flex-flow: wrap;
-}
 
 .font {
   height: 375px;
@@ -210,7 +168,7 @@ export default {
 .top {
   height: 30%;
   width: 100%;
-  background-color: #8338ec;
+  background-color: #0800f5;
   position: relative;
   z-index: 5;
   border-top-left-radius: 15px;
@@ -224,6 +182,7 @@ export default {
   position: absolute;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  color: black;
 }
 
 .top img {
@@ -246,7 +205,7 @@ export default {
 }
 .bottom .desi {
   font-size: 12px;
-  color: grey;
+  color: black;
   font-weight: normal;
 }
 .bottom .no {
@@ -269,7 +228,7 @@ export default {
   height: 375px;
   width: 250px;
   border-radius: 10px;
-  background-color: #8338ec;
+  background-color: #0800f5;
 }
 .qr img {
   height: 80px;
@@ -295,35 +254,19 @@ export default {
   line-height: 22px;
 }
 
-.logo {
+.mylogo {
   height: 40px;
   width: 150px;
   padding: 40px;
 }
 
 .logo img {
+  padding-top: 52px;
   height: 100%;
   width: 100%;
-  color: white;
+  color: black;
 }
 .padding {
   padding-right: 20px;
-}
-
-@media screen and (max-width: 400px) {
-  .container {
-    height: 130vh;
-  }
-  .container .front {
-    margin-top: 50px;
-  }
-}
-@media screen and (max-width: 600px) {
-  .container {
-    height: 130vh;
-  }
-  .container .front {
-    margin-top: 50px;
-  }
 }
 </style>
