@@ -1,0 +1,5 @@
+body#body {
+  background: url('./background-img.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
