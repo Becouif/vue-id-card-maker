@@ -84,7 +84,7 @@
               </div>
             </div>
             <div class="card-footer">
-              <button class="btn text-center" type="submit">
+              <button class="btn text-center" type="submit" @click="submitForm">
                 <i class=""></i> Proceed
               </button>
             </div>
@@ -95,10 +95,9 @@
   </section>
 
   <!-- end of boastrap css  -->
-  <br /><br />
 
   <!-- start of the new id card  -->
-  <section>
+  <section id="id-card" v-if="cardIsVisible">
     <div>
       <div class="my-container">
         <div class="padding">
@@ -107,9 +106,9 @@
             <div class="bottom">
               <p>{{ inputName }}</p>
               <p>{{ companyName }}</p>
-              <p class="desi">{{ role }}</p>
+              <p>{{ role }}</p>
               <p><b>Id no:</b></p>
-              <p>1275127237</p>
+              <p>{{ cardNumber }}</p>
 
               <div class="logo">
                 <img src="../images/barcode.PNG" alt="####BarCode" />
@@ -132,6 +131,8 @@ export default {
       companyName: '',
       role: '',
       imgType: '',
+      cardNumber: '',
+      cardIsVisible: false,
     };
   },
   methods: {
@@ -151,12 +152,29 @@ export default {
       };
       reader.readAsDataURL(file);
     },
+    // start of id no generator
+    randomNumbers() {
+      let firstRand = Math.floor(Math.random() * 100).toLocaleString();
+      let secRand = Math.floor(
+        Math.random() * (900 - 300) + 300
+      ).toLocaleString();
+      let thirdRand = Math.floor(Math.random() * 200).toLocaleString();
+      let idNumber = firstRand + secRand + thirdRand;
+      this.cardNumber = idNumber;
+    },
+    submitForm() {
+      this.randomNumbers();
+      this.cardIsVisible = true;
+    },
   },
 };
 </script>
 
 <style scoped>
 /* style for card display  */
+#id-card {
+  margin: 5rem;
+}
 
 .font {
   height: 375px;
@@ -199,7 +217,7 @@ export default {
   top: 60px;
   text-align: center;
   text-transform: capitalize;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 20px;
   text-emphasis: spacing;
 }
