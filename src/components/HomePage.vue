@@ -1,104 +1,87 @@
 <template>
   <!-- start of bostrap css  -->
 
-  <section>
-    <div class="padding">
+  <!-- start of new form  -->
+  <section class="max-w-sm rounded overflow-hidden shadow-lg" id="card-info">
+    <div class="px-6 py-4">
       <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-header">
-              <strong>Enter Details</strong>
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input
-                      class="form-control"
-                      id="name"
-                      type="text"
-                      placeholder="Enter your name"
-                      v-model="inputName"
-                    />
-                  </div>
-                </div>
-              </div>
-              <br />
-              <div class="row">
-                <div class="form-group col-sm-12">
-                  <select v-model="selectedOffice" class="form-control">
-                    <option value="">Please select one</option>
-                    <option value="Company Name:" selected="selected">
-                      Company
-                    </option>
-                    <option value="School Name:">School</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="name">{{ selectedOffice }}</label>
-                    <input
-                      class="form-control"
-                      id="company"
-                      type="text"
-                      :placeholder="selectedOffice"
-                      v-model="companyName"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <br />
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="name">Role</label>
-                    <input
-                      class="form-control"
-                      id="role"
-                      type="text"
-                      placeholder="Enter Role"
-                      v-model="role"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="name">Pick ID card image</label>
-                    <input
-                      class="form-control"
-                      id="file"
-                      type="file"
-                      placeholder="Enter profile pic"
-                      accept="image/*"
-                      v-on:change="imgUpload"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer">
-              <button class="btn text-center" type="submit" @click="submitForm">
-                <i class=""></i> Proceed
-              </button>
-            </div>
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              class="form-control"
+              id="name"
+              type="text"
+              placeholder="Enter your name"
+              v-model="inputName"
+            />
           </div>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <select v-model="selectedOffice" class="form-control">
+              <option value="">Please select one</option>
+              <option value="Company Name:" selected="selected">Company</option>
+              <option value="School Name:">School</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="name">{{ selectedOffice }}</label>
+            <input
+              class="form-control"
+              id="company"
+              type="text"
+              :placeholder="selectedOffice"
+              v-model="companyName"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="name">Role</label>
+            <input
+              class="form-control"
+              id="role"
+              type="text"
+              placeholder="Enter Role"
+              v-model="role"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="name">Pick ID card image</label>
+            <input
+              class="form-control"
+              id="file"
+              type="file"
+              placeholder="Enter profile pic"
+              accept="image/*"
+              v-on:change="imgUpload"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- submit button  -->
+      <button @click="submitForm" type="submit" class="my-btn">
+        Submit Form
+      </button>
     </div>
-  </section>
-
-  <!-- end of boastrap css  -->
-
-  <!-- start of the new id card  -->
-  <section id="id-card" v-if="cardIsVisible">
-    <div>
+    <!-- start of my id card display HTMl  -->
+    <div v-if="cardIsVisible" class="id-card">
       <div class="my-container">
         <div class="padding">
           <div class="font">
@@ -107,8 +90,8 @@
               <p>{{ inputName }}</p>
               <p>{{ companyName }}</p>
               <p>{{ role }}</p>
-              <p><b>Id no:</b></p>
-              <p>{{ cardNumber }}</p>
+              <p class="no">Id no:</p>
+              <p class="no">{{ cardNumber }}</p>
 
               <div class="logo">
                 <img src="../images/barcode.PNG" alt="####BarCode" />
@@ -120,6 +103,11 @@
       </div>
     </div>
   </section>
+
+  <!-- end of boastrap css  -->
+
+  <!-- start of the new id card  -->
+  <section id="card-info"></section>
   <br />
 </template>
 <script>
@@ -154,11 +142,15 @@ export default {
     },
     // start of id no generator
     randomNumbers() {
-      let firstRand = Math.floor(Math.random() * 100).toLocaleString();
+      let firstRand = Math.floor(
+        Math.random() * (200 - 100) + 100
+      ).toLocaleString();
       let secRand = Math.floor(
         Math.random() * (900 - 300) + 300
       ).toLocaleString();
-      let thirdRand = Math.floor(Math.random() * 200).toLocaleString();
+      let thirdRand = Math.floor(
+        Math.random() * (300 - 200) + 200
+      ).toLocaleString();
       let idNumber = firstRand + secRand + thirdRand;
       this.cardNumber = idNumber;
     },
@@ -171,9 +163,12 @@ export default {
 </script>
 
 <style scoped>
+#card-info {
+  margin: auto;
+}
 /* style for card display  */
 #id-card {
-  margin: 5rem;
+  margin-left: 25rem;
 }
 
 .font {
@@ -221,11 +216,7 @@ export default {
   font-size: 20px;
   text-emphasis: spacing;
 }
-.bottom .desi {
-  font-size: 12px;
-  color: black;
-  font-weight: normal;
-}
+
 .bottom .no {
   font-size: 15px;
   font-weight: normal;
@@ -246,7 +237,7 @@ export default {
   height: 375px;
   width: 250px;
   border-radius: 10px;
-  background-color: #0800f5;
+  background-color: #1d4ed8;
 }
 .qr img {
   height: 80px;
@@ -272,10 +263,8 @@ export default {
   line-height: 22px;
 }
 
-.mylogo {
-  height: 40px;
-  width: 150px;
-  padding: 40px;
+.logo {
+  margin-top: 0.5rem;
 }
 
 .logo img {
@@ -286,5 +275,18 @@ export default {
 }
 .padding {
   padding-right: 20px;
+}
+
+.my-btn {
+  margin-top: 0.5rem;
+  background-color: white;
+  color: black;
+  /* float: right; */
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.my-btn:hover {
+  background-color: #1d4ed8;
+  color: white;
 }
 </style>
