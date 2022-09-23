@@ -176,6 +176,7 @@ export default {
 div#id-card {
   position: relative;
   left: 50px;
+  margin-bottom: 2rem;
 }
 
 .font {
