@@ -25,8 +25,12 @@
           <div class="form-group">
             <select v-model="selectedOffice" class="form-control">
               <option value="">Please select one</option>
-              <option value="Company Name:" selected="selected">Company</option>
-              <option value="School Name:">School</option>
+              <option value="Company/Firm Name:" selected="selected">
+                Company/Firm
+              </option>
+              <option value="School/Institution Name:">
+                School/Institution
+              </option>
             </select>
           </div>
         </div>
@@ -82,7 +86,7 @@
       </button>
     </div>
     <!-- start of my id card display HTMl  -->
-    <div v-if="cardIsVisible" id="id-card">
+    <div v-if="cardIsVisible" id="id-card" autofocus>
       <div>
         <div>
           <div class="font">
@@ -176,7 +180,6 @@ export default {
 div#id-card {
   position: relative;
   left: 50px;
-  margin-bottom: 2rem;
 }
 
 .font {
