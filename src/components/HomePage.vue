@@ -96,7 +96,7 @@
               <p>{{ newInput }}</p>
 
               <div class="logo">
-                <img src="../images/barcode.PNG" alt="####BarCode" />
+                <img src="../assets/image/barcode.png" alt="####BarCode" />
               </div>
             </div>
           </div>
@@ -131,7 +131,6 @@ export default {
       let files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;
       this.createImage(files[0]);
-      console.log(files[0]);
     },
     createImage(file) {
       this.imgType = new Image();
