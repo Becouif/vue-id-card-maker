@@ -4,6 +4,7 @@
   <!-- start of new form  -->
   <section class="max-w-sm rounded overflow-hidden shadow-lg" id="card-info">
     <div class="px-6 py-4">
+      <!-- testing template refs being using  -->
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
@@ -13,7 +14,7 @@
               id="name"
               type="text"
               placeholder="Enter your name"
-              v-model="inputName"
+              ref="inputName"
             />
           </div>
         </div>
@@ -40,7 +41,7 @@
               id="company"
               type="text"
               :placeholder="selectedOffice"
-              v-model="companyName"
+              ref="companyName"
             />
           </div>
         </div>
@@ -55,7 +56,7 @@
               id="role"
               type="text"
               placeholder="Enter Role"
-              v-model="role"
+              ref="role"
             />
           </div>
         </div>
@@ -81,9 +82,9 @@
       </button>
     </div>
     <!-- start of my id card display HTMl  -->
-    <div v-if="cardIsVisible" class="id-card">
-      <div class="my-container">
-        <div class="padding">
+    <div v-if="cardIsVisible" id="id-card">
+      <div>
+        <div>
           <div class="font">
             <div class="top"><img :src="imgType" alt="Profile Pic" /></div>
             <div class="bottom">
@@ -92,6 +93,7 @@
               <p>{{ role }}</p>
               <p class="no">Id no:</p>
               <p class="no">{{ cardNumber }}</p>
+              <p>{{ newInput }}</p>
 
               <div class="logo">
                 <img src="../images/barcode.PNG" alt="####BarCode" />
@@ -121,6 +123,7 @@ export default {
       imgType: '',
       cardNumber: '',
       cardIsVisible: false,
+      newInput: '',
     };
   },
   methods: {
@@ -157,6 +160,10 @@ export default {
     submitForm() {
       this.randomNumbers();
       this.cardIsVisible = true;
+      this.inputName = this.$refs.inputName.value;
+
+      this.companyName = this.$refs.companyName.value;
+      this.role = this.$refs.role.value;
     },
   },
 };
@@ -167,8 +174,9 @@ export default {
   margin: auto;
 }
 /* style for card display  */
-#id-card {
-  margin-left: 25rem;
+div#id-card {
+  position: relative;
+  left: 50px;
 }
 
 .font {
@@ -176,6 +184,14 @@ export default {
   width: 250px;
   position: relative;
   border-radius: 10px;
+  /* start of my 3d addition to this page  */
+  /* transform: perspective(1500px) rotateY(15deg); */
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  transition: transform 1s ease 0s;
+}
+.font:hover {
+  transform: perspective(3000px) rotateY(15deg);
 }
 
 .top {
@@ -273,20 +289,18 @@ export default {
   width: 100%;
   color: black;
 }
-.padding {
-  padding-right: 20px;
-}
 
-.my-btn {
-  margin-top: 0.5rem;
+.my-btn:hover {
   background-color: white;
   color: black;
   /* float: right; */
   padding: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem;
 }
-.my-btn:hover {
+.my-btn {
   background-color: #1d4ed8;
   color: white;
+  padding: 0.5rem;
+  margin: 0.5rem;
 }
 </style>
