@@ -1,9 +1,11 @@
 <script>
 import HomePageVue from './components/HomePage.vue';
+// import UserBarcodeVue from './components/UserBarcode.vue';
 
 export default {
   components: {
     HomePageVue,
+    // UserBarcodeVue,
   },
   data() {},
 };
@@ -12,5 +14,6 @@ export default {
 <template>
   <div>
     <HomePageVue></HomePageVue>
+    <!-- <UserBarcodeVue></UserBarcodeVue> -->
   </div>
 </template>

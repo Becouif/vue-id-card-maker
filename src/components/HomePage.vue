@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Enter your full name</label>
             <input
               class="form-control"
               id="name"
@@ -24,12 +24,12 @@
         <div class="col-sm-12">
           <div class="form-group">
             <select v-model="selectedOffice" class="form-control">
-              <option value="">Please select one</option>
-              <option value="Company/Firm Name:" selected="selected">
-                Company/Firm
+              <option value="">please select one</option>
+              <option value="company/firm name:" selected="selected">
+                company/firm
               </option>
-              <option value="School/Institution Name:">
-                School/Institution
+              <option value="school/institution name:">
+                school/institution
               </option>
             </select>
           </div>
@@ -54,7 +54,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
-            <label for="name">Role</label>
+            <label for="name">role</label>
             <input
               class="form-control"
               id="role"
@@ -68,7 +68,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
-            <label for="name">Pick ID card image</label>
+            <label for="name">pick id card image</label>
             <input
               class="form-control"
               id="file"
@@ -86,21 +86,20 @@
       </button>
     </div>
     <!-- start of my id card display HTMl  -->
-    <div v-if="cardIsVisible" id="id-card" autofocus>
+    <div v-if="cardIsVisible" id="id-card">
       <div>
         <div>
           <div class="font">
             <div class="top"><img :src="imgType" alt="Profile Pic" /></div>
             <div class="bottom">
-              <p>{{ inputName }}</p>
-              <p>{{ companyName }}</p>
-              <p>{{ role }}</p>
-              <p class="no">Id no:</p>
-              <p class="no">{{ cardNumber }}</p>
-              <p>{{ newInput }}</p>
+              <div Id="info">
+                <p>{{ inputName }}</p>
+                <p>{{ companyName }}</p>
+                <p class="role">{{ role }}</p>
+              </div>
 
               <div class="logo">
-                <img src="../assets/image/barcode.png" alt="####BarCode" />
+                <svg id="barcode"></svg>
               </div>
             </div>
           </div>
@@ -117,7 +116,10 @@
   <br />
 </template>
 <script>
+import JsBarcode from 'jsbarcode';
+// import VueBarcode from 'vue-barcode';
 export default {
+  // components: { VueBarcode },
   data() {
     return {
       inputName: '',
@@ -127,7 +129,6 @@ export default {
       imgType: '',
       cardNumber: '',
       cardIsVisible: false,
-      newInput: '',
     };
   },
   methods: {
@@ -167,6 +168,11 @@ export default {
 
       this.companyName = this.$refs.companyName.value;
       this.role = this.$refs.role.value;
+      window.setTimeout(() => {
+        JsBarcode('#barcode', this.cardNumber, {
+          height: '30',
+        });
+      }, 0);
     },
   },
 };
@@ -180,6 +186,7 @@ export default {
 div#id-card {
   position: relative;
   left: 50px;
+  /* font-family: 'Courgette', cursive; */
 }
 
 .font {
@@ -197,6 +204,11 @@ div#id-card {
   transform: perspective(3000px) rotateY(15deg);
 }
 
+.role {
+  font-family: 'Sacramento', cursive;
+  /* font-style: italic; */
+  /* font-weight: lighter; */
+}
 .top {
   height: 30%;
   width: 100%;
@@ -237,58 +249,18 @@ div#id-card {
 }
 
 .bottom .no {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: normal;
-}
-.barcode img {
-  height: 65px;
-  width: 65px;
-  text-align: center;
-  margin: 5px;
-}
-.barcode {
-  text-align: center;
-  position: relative;
-  top: 70px;
-}
-
-.back {
-  height: 375px;
-  width: 250px;
-  border-radius: 10px;
-  background-color: #1d4ed8;
-}
-.qr img {
-  height: 80px;
-  width: 100%;
-  margin: 20px;
-  background-color: white;
-}
-.Details {
-  color: white;
-  text-align: center;
-  padding: 10px;
-  font-size: 25px;
-}
-
-.details-info {
-  color: white;
-  text-align: left;
-  padding: 5px;
-  line-height: 20px;
-  font-size: 16px;
-  text-align: center;
-  margin-top: 20px;
-  line-height: 22px;
 }
 
 .logo {
   margin-top: 0.5rem;
 }
 
-.logo img {
-  padding-top: 52px;
-  height: 100%;
+.logo svg#barcode {
+  margin-top: 1rem;
+  padding: 3rem;
+  height: 20%;
   width: 100%;
   color: black;
 }
