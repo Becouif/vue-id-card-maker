@@ -7,7 +7,6 @@ export default {
     HomePageVue,
     // UserBarcodeVue,
   },
-  data() {},
 };
 </script>
 

@@ -15,6 +15,7 @@
               type="text"
               placeholder="Enter your name"
               ref="inputName"
+              required
             />
           </div>
         </div>
@@ -68,7 +69,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
-            <label for="name">pick id card image</label>
+            <label for="name">pick ID card image</label>
             <input
               class="form-control"
               id="file"
@@ -76,6 +77,19 @@
               placeholder="Enter profile pic"
               accept="image/*"
               v-on:change="imgUpload"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="name">pick a color for ID background</label>
+            <input
+              class="form-control"
+              id="color"
+              type="color"
+              v-model="colorPick"
             />
           </div>
         </div>
@@ -90,7 +104,9 @@
       <div>
         <div>
           <div class="font">
-            <div class="top"><img :src="imgType" alt="Profile Pic" /></div>
+            <div :style="bgChange" class="top">
+              <img :src="imgType" alt="Profile Pic" />
+            </div>
             <div class="bottom">
               <div Id="info">
                 <p>{{ inputName }}</p>
@@ -122,6 +138,7 @@ export default {
   // components: { VueBarcode },
   data() {
     return {
+      colorPick: '#0800f5',
       inputName: '',
       selectedOffice: '',
       companyName: '',
@@ -173,6 +190,11 @@ export default {
           height: '30',
         });
       }, 0);
+    },
+  },
+  computed: {
+    bgChange() {
+      return { backgroundColor: this.colorPick };
     },
   },
 };
